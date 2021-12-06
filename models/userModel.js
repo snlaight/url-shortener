@@ -4,7 +4,7 @@ const Schema = mongoose.Schema;
 const user = new Schema (
     {
        email: {type : String, required: true},
-       createdUrls: [{type: Schema.Types.ObjectId, ref:"URL_Store"}]
+       createdUrls: [{type: Schema.Types.ObjectId, ref:"urlmodel"}]
     },
     {
         timestamps: {
