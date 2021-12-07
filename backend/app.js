@@ -2,7 +2,7 @@ require("./dbConfig/db")
 const express = require('express');
 
 const app = express();
-const port = process.env.PORT || 3000 ;
+const port = process.env.PORT || 3050 ;
 const urlRoutes = require('./routes/dbRequest')
 const appRoutes = require('./routes/appRoutes')
 

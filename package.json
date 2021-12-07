@@ -1,29 +1,32 @@
 {
   "name": "url-shortener",
   "version": "1.0.0",
-  "description": "",
+  "description": "URL shortener monorepo",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node app.js",
-    "dev": "nodemon app.js"
+    "client": "npm start --prefix frontend",
+    "server": "npm start --prefix backend",
+    "start-all": "concurrently --kill-others-on-fail \"npm run server\" \"npm run client\"",
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/snlaight/url-shortener.git"
   },
-  "keywords": [],
-  "author": "",
+  "keywords": [
+    "javascript",
+    "url-shortener",
+    "react-app",
+    "express",
+    "node"
+  ],
+  "author": "Santiago Laight",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/snlaight/url-shortener/issues"
   },
   "homepage": "https://github.com/snlaight/url-shortener#readme",
-  "dependencies": {
-    "dotenv": "^10.0.0",
-    "express": "^4.17.1",
-    "jsonwebtoken": "^8.5.1",
-    "mongoose": "^6.0.14",
-    "nodemon": "^2.0.15"
+  "devDependencies": {
+    "concurrently": "^6.4.0"
   }
 }
