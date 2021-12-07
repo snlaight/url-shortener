@@ -27,7 +27,10 @@ router.post("/createshorturl", async (req, res) => {
     .then((updatedUser) =>
       res.send({
         status: 200,
-        message: `${originalUrl} URL succesfully created and stored as http://localhost:3000/SUA/${shortUrl}`,
+        message: `URL succesfully created and stored as ${shortUrl} `,
+        shortUrl: `${shortUrl}`,
+        redirectUrl: `http://localhost:3050/SUA/${shortUrl}`,
+        longUrl:`${originalUrl}`,
       })
     );
   res.send(creatingUrl);
