@@ -15,7 +15,10 @@ app.use((error, req, res, next) => {
     });
   });
 
+//THESE ROUTES DISPLAY WHAT'S CURRENTLY IN THE DB AS WELL AS HANDLE THE REDIRECT TO THE ORIGINAL URL
 app.use('/', appRoutes);
+
+//THESE ROUTES ALL GO TO THE DB
 app.use('/shorturl', urlRoutes);
 
 app.listen(port, ()=> console.log(`Server started on port ${port}`));
