@@ -40,6 +40,13 @@ router.post("/createshorturl", async (req, res) => {
 //route to create an account for app. all that is required is an email. IF there's time, will implement oauth google sign in/sign up.
 router.post("/signup", async (req, res) => {
   let email = req.body.email;
+  let checkForEmail = await userModel.findOne({email}).then((userFound)=> {return userFound});
+  if(checkForEmail){
+    res.send({
+      status:400,
+      message:`User with ${email} already exists. Please provide another email`
+    })
+  }
  let createUser = await userModel
     .create({
       email
