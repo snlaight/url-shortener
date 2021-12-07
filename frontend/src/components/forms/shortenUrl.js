@@ -1,4 +1,5 @@
 import { React, useState } from "react";
+import Swal from "sweetalert2";
 
 const ShortenURLForm = () => {
   let [info, setInfo] = useState({
@@ -7,11 +8,13 @@ const ShortenURLForm = () => {
   });
   let [response, setResponse] = useState({
     shortUrl: "",
-    redirectUrl:""
+    redirectUrl: "",
   });
 
+//THIS CREATES POSTS THE URL TO SHORTEN TO THE DB AND RETURNS THE SHORTENED URL TO THE CLIENT.
   const postNewURL = async (e) => {
     e.preventDefault();
+
     //post route /shorturl/createshorturl
     let shortenNewURL = await fetch("/shorturl/createshorturl", {
       method: "POST",
@@ -26,7 +29,6 @@ const ShortenURLForm = () => {
     })
       .then((res) => res.json())
       .then((result) => {
-        console.log(result);
         return result;
       });
     setResponse({
@@ -36,8 +38,48 @@ const ShortenURLForm = () => {
     return shortenNewURL;
   };
 
+  //THIS POSTS THE EMAIL SUBMITTED IN THE SWEET ALERT FORM TO THE DB.
+  const postEmail = async (email) => {
+    await fetch("/shorturl/signup", {
+      method: "POST",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        email: email,
+      }),
+    })
+      .then((res) => res.json())
+      .then((result) => {
+        return result;
+      });
+  };
+
+//THIS USES SWEETALERT AS A MODAL TO POST THE NEW EMAIL TO THE DB
+  const openModal = () => {
+    //eslint-disable-next-line no-unused-vars
+    const { value: email } = Swal.fire({
+      title: "Create your account",
+      input: "email",
+      inputLabel: "Enter your email below:",
+      inputPlaceholder: "Your email here",
+      showCancelButton: true,
+      confirmButtonText: "Create account",
+      confirmButtonColor: "#96be25",
+      icon: "info",
+      inputValidator: (value) => {
+        postEmail(value);
+        Swal.fire(
+          "Email created!",
+          "Your account has been succesfully created.",
+          "success"
+        );
+      },
+    });
+  };
+
   const handleChange = (e) => {
-    console.log(info);
     setInfo({
       ...info,
       [e.target.name]: e.target.value,
@@ -61,6 +103,13 @@ const ShortenURLForm = () => {
             className="bg-gray-200 border rounded text-xs font-medium leading-none placeholder-gray-300 text-gray-500 py-3 w-full pl-3 mt-2"
             placeholder="e.g: john@gmail.com "
           />
+
+          <p className="text-xs text-blue-300 py-3">
+            Don't have an account? Sign up{" "}
+            <span className="hover:underline" onClick={openModal}>
+              here
+            </span>
+          </p>
         </div>
         <div className="mt-6 w-full">
           <label className="text-sm font-medium leading-none text-gray-800">
@@ -84,7 +133,17 @@ const ShortenURLForm = () => {
           {response.redirectUrl ? (
             <div>
               {" "}
-              URL succesfully stored as {response.shortUrl}. Click <a href={response.redirectUrl} className="text-blue-600" target="_blank" rel="noreferrer">here</a> to be redirected to your original url. {" "}
+              URL succesfully stored as{" "}
+              <span className="text-blue-300">{response.shortUrl}</span>. Click{" "}
+              <a
+                href={response.redirectUrl}
+                className="text-blue-600"
+                target="_blank"
+                rel="noreferrer"
+              >
+                here
+              </a>{" "}
+              to be redirected to your original url.{" "}
             </div>
           ) : (
             ""
