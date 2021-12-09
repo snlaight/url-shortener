@@ -19,6 +19,9 @@ router.post("/createshorturl", async (req, res) => {
     res.send({
       status: 409,
       message: `Url already exists in DB as ${checkForExistingUrl.shortUrl}`,
+      shortUrl: `${checkForExistingUrl.shortUrl}`,
+      redirectUrl: `http://localhost:3050/SUA/${checkForExistingUrl.shortUrl}`,
+      longUrl: `${checkForExistingUrl.originalUrl}`,
     });
   } else {
   }
