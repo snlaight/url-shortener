@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router();
-const urlModel = require("../models/urlModel");
-const userModel = require("../models/userModel");
+const urlModel = require("../models/url.model");
+const userModel = require("../models/user.model");
 
 //home route of the app to render data, still TBC
 router.get("/", (req, res) => {
