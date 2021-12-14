@@ -75,7 +75,7 @@ module.exports = {
 
   async getAllUrls(req, res) {
     try {
-      let urls = await urlMode.find().then((allUrls) => {
+      let urls = await urlModel.find().then((allUrls) => {
         return allUrls;
       });
       res.send(urls);

@@ -118,7 +118,8 @@ const ShortenURLForm = () => {
           <div className="relative flex items-center justify-center">
             <input
               name="url"
-              type="text"
+              type="url"
+              required
               onChange={handleChange}
               className="bg-gray-200 border rounded text-xs font-medium leading-none text-gray-800 py-3 w-full pl-3 mt-2"
             />
