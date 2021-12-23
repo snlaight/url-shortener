@@ -2,11 +2,11 @@
   "name": "url-shortener",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "src/app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node app.js",
-    "dev": "nodemon app.js"
+    "start": "babel src --out-dir dist babel-node dist",
+    "dev": "nodemon src/app.js --exec babel-node src/app.js"
   },
   "repository": {
     "type": "git",
@@ -25,5 +25,12 @@
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^6.0.14",
     "nodemon": "^2.0.15"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.16.0",
+    "@babel/core": "^7.16.5",
+    "@babel/node": "^7.16.5",
+    "@babel/preset-env": "^7.16.5",
+    "babel-plugin-module-resolver": "^4.1.0"
   }
 }
