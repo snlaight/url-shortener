@@ -6,12 +6,12 @@
   "scripts": {
     "client": "npm start --prefix frontend",
     "server": "npm start --prefix backend",
-    "dev-server":"npm run dev --prefix backend",
+    "dev-server": "npm run dev --prefix backend",
     "install:client": "npm install --prefix frontend",
     "install:server": "npm install --prefix backend",
-    "install-all":"concurrently --kill-others-on-fail \"npm run install:server\" \"npm run install:client\"",
+    "install-all": "concurrently --kill-others-on-fail \"npm run install:server\" \"npm run install:client\"",
     "start-all": "concurrently --kill-others-on-fail \"npm run server\" \"npm run client\"",
-    "start-dev":"concurrently --kill-others-on-fail \"npm run dev-server\" \"npm run client\"",
+    "start-dev": "concurrently --kill-others-on-fail \"npm run dev-server\" \"npm run client\"",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
